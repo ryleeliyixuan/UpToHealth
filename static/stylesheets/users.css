@@ -1,0 +1,58 @@
+.section-container {
+  background: linear-gradient(
+    145.8deg,
+    rgba(232, 232, 232, 0) 8.21%,
+    rgba(231, 162, 108, 0.609375) 52.41%,
+    #b31b1b 80.74%
+  );
+}
+
+.section {
+  height: 50vh;
+  width: 100%;
+}
+
+.login-box {
+  border-radius: 20%/100px 100px 0 0;
+  background-color: #b31b1b;
+}
+
+#login-form {
+  width: 300px;
+}
+
+.nobg {
+  background-color: #b31b1b !important;
+}
+
+.nonactive {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.underscore {
+  border: 1px solid #ffffff;
+}
+
+.input {
+  /* gradient */
+  background: linear-gradient(284.25deg, #e7751d 17.61%, #b31b1b 91.28%);
+  box-shadow: -4px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: white;
+  border: #b31b1b;
+
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 41px;
+}
+
+.input::placeholder {
+  color: white !important;
+  opacity: 1;
+}
+
+.intro {
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 41px;
+}

@@ -91,11 +91,11 @@ app.post("/sessionLogin", (req, res) => {
 });
 
 app.get("/sign-in", function (req, res) {
-  res.render("pages/sign-in");
+  res.render("pages/users/sign-in");
 });
 
 app.get("/sign-up", function (req, res) {
-  res.render("pages/sign-up");
+  res.render("pages/users/sign-up");
 });
 
 // TODO 1: Set up log out + get idToken for each request
