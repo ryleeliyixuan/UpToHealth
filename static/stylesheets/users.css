@@ -12,6 +12,16 @@
   width: 100%;
 }
 
+.section-1 {
+  height: 40vh;
+  width: 100%;
+}
+
+.section-2 {
+  height: 60vh;
+  width: 100%;
+}
+
 .login-box {
   border-radius: 20%/100px 100px 0 0;
   background-color: #b31b1b;
@@ -51,8 +61,8 @@
   opacity: 1;
 }
 
-.intro {
-  font-weight: 800;
-  font-size: 34px;
-  line-height: 41px;
+@media (max-width: 1200px) {
+  .intro {
+    width: 80vw;
+  }
 }

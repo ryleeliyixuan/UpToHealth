@@ -49,7 +49,7 @@ app.get("/", function (req, res) {
 
 app.post("/sessionLogin", (req, res) => {
   const idToken = req.body.idToken.toString();
-  const username = req.body.username; // get username
+  const { name, institution } = req.body;
   const signInType = req.body.signInType;
 
   const expiresIn = 60 * 60 * 24 * 5 * 1000;
@@ -72,7 +72,7 @@ app.post("/sessionLogin", (req, res) => {
             const email = userData.email;
 
             if (signInType === "register") {
-              UserService.createUser(id, email, username).then(() => {
+              UserService.createUser(id, email, name, institution).then(() => {
                 res.end(
                   JSON.stringify({ status: "success - saved to firebase!" })
                 );

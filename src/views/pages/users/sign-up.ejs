@@ -1,66 +1,87 @@
-<!-- TODO 7: Styling Sign-up Page -->
 <% layout('layouts/boilerplate')%>
-<div class="container d-flex justify-content-center align-items-center mt-5">
-  <div class="row">
-    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
-      <div class="card shadow">
-        <img
-          src="https://images.unsplash.com/photo-1614358536373-1ce27819009e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1769&q=80"
-          alt=""
-          class="card-img-top"
-        />
-        <div class="card-body">
-          <h5 class="card-title">Register</h5>
-          <form
-            id="login-form"
-            action="/register"
-            method="POST"
-            class="validated-form"
-            novalidate
-          >
-            <div class="mb-3">
-              <label class="form-label" for="username">Username</label>
-              <input
-                class="form-control"
-                type="text"
-                id="username"
-                name="username"
-                required
-                autofocus
-              />
-              <div class="valid-feedback">Looks good!</div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label" for="login">Email</label>
-              <input
-                class="form-control"
-                type="email"
-                id="login"
-                name="login"
-                required
-                autofocus
-              />
-              <div class="valid-feedback">Looks good!</div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label" for="password">Password</label>
-              <input
-                class="form-control"
-                type="password"
-                id="password"
-                name="password"
-                required
-              />
-              <div class="valid-feedback">Looks good!</div>
-            </div>
-            <button class="btn btn-success btn-block">Register</button>
-          </form>
-        </div>
-      </div>
+<link rel="stylesheet" href="/static/stylesheets/users.css" />
+
+<div
+  class="section-container d-flex flex-column justify-content-center align-items-center"
+>
+  <div class="section-1 center flex-column">
+    <img class="logo-img mb-1" src="/static/assets/logo.svg" />
+    <div class="text intro">
+      Hi Doctor... Say Hi to seamless exchange of consolidated referral
+      information
     </div>
   </div>
+  <div class="section-2 login-box center flex-column">
+    <ul class="nav nav-pills mb-4">
+      <li class="nav-item">
+        <a class="nav-link nonactive text nobg" href="/sign-in">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text nobg active" aria-current="page" href="/sign-up"
+          >Sign-up</a
+        >
+        <div class="underscore"></div>
+      </li>
+    </ul>
+    <form
+      id="login-form"
+      action="/register"
+      method="POST"
+      class="validated-form d-flex flex-column"
+      novalidate
+    >
+      <div class="mb-3">
+        <input
+          class="form-control input text"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Name"
+          required
+          autofocus
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <input
+          class="form-control input text"
+          type="text"
+          id="institution"
+          name="institution"
+          placeholder="Institution"
+          required
+          autofocus
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <input
+          class="form-control input text"
+          type="email"
+          id="login"
+          name="login"
+          placeholder="Email"
+          required
+          autofocus
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <input
+          class="form-control input text"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <button class="btn btn-success btn-block">Register</button>
+    </form>
+  </div>
 </div>
-<!-- TODO 7: Styling Sign-up Page -->
+
 <script src="https://www.gstatic.com/firebasejs/9.6.4/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.4/firebase-auth-compat.js"></script>
 
@@ -86,7 +107,8 @@
         event.preventDefault();
         const login = event.target.login.value;
         const password = event.target.password.value;
-        const username = event.target.username.value; // get username
+        const name = event.target.username.value;
+        const institution = event.target.institution.value;
 
         app
           .auth()
@@ -102,7 +124,8 @@
                 },
                 body: JSON.stringify({
                   idToken,
-                  username,
+                  name,
+                  institution,
                   signInType: "register",
                 }),
               });

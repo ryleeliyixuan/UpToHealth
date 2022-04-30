@@ -18,16 +18,6 @@ main {
   float: left;
 }
 
-.intro {
-  font-size: x-large;
-  font-weight: 700;
-  line-height: 32px;
-  text-transform: capitalize;
-  color: #ffffff;
-  text-align: initial;
-  text-shadow: -4px 4px 7px rgba(0, 0, 0, 0.25);
-}
-
 .cover-container {
   max-width: 60vw;
 }
@@ -43,16 +33,8 @@ main {
     max-width: 90vw;
   }
 
-  .logo-img {
-    width: 60vw;
-  }
-
   .logo-line {
     width: 60vw;
-  }
-
-  .intro {
-    font-size: medium;
   }
 
   .btn {
