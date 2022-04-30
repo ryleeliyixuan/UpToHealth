@@ -3,11 +3,12 @@ const admin = require("firebase-admin");
 const db = admin.firestore();
 
 module.exports = {
-  createUser: async (id, email, username) => {
+  createUser: async (id, email, name, institution) => {
     const docRef = db.collection("users").doc(id);
     await docRef.set({
       email: email,
-      username: username,
+      name: name,
+      institution: institution,
     });
   },
 
