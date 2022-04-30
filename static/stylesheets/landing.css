@@ -1,0 +1,43 @@
+body {
+  height: 100vh;
+  background-image: linear-gradient(white, 30%, #b31b1b, #b31b1b 80%);
+}
+
+.logo-img {
+  width: 30vw;
+  height: auto;
+  object-fit: cover;
+}
+
+.logo-line {
+  border: 2px solid #e7751d;
+}
+
+.intro {
+  font-size: x-large;
+  font-weight: 700;
+  line-height: 32px;
+  text-transform: capitalize;
+  color: #ffffff;
+  text-shadow: -4px 4px 7px rgba(0, 0, 0, 0.25);
+}
+
+.cover-container {
+  max-width: 60vw;
+}
+
+.btn {
+  width: 20vw;
+  height: 7vh;
+  background-color: #e7751d;
+  border: none;
+  text-align: center;
+}
+
+/* Mobile Device */
+@media (max-width: 480px) {
+  .btn {
+    width: 275px;
+    height: 75px;
+  }
+}
