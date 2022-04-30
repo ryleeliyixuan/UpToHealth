@@ -1,0 +1,11 @@
+<svg width="88" height="115" xmlns="http://www.w3.org/2000/svg" stroke-miterlimit="10" stroke-linecap="square" fill="none" version="1.1">
+ <clipPath id="p.0">
+  <path id="svg_1" clip-rule="nonzero" d="m0,0l960,0l0,720l-960,0l0,-720z"/>
+ </clipPath>
+
+ <g>
+  <title>Layer 1</title>
+  <path stroke="null" id="svg_5" fill-rule="nonzero" d="m56.25044,25.43882l21.59375,0l0,61.20312q0,12.59375 -5.70313,18.29688q-5.6875,5.70312 -18.29687,5.70312l-27.59375,0q-12.60938,0 -18.3125,-5.70312q-5.6875,-5.70313 -5.6875,-18.29688l0,-61.20312l21.59375,0l0,61.20312q0,7.20313 7.20312,7.20313l18,0q7.20313,0 7.20313,-7.20313l0,-61.20312z" fill="#ff9900"/>
+  <path stroke="null" id="svg_6" fill-rule="evenodd" d="m50,32.74802l18.25195,-27.74802l18.25196,27.74802l-36.50391,0z" fill="#ff9900"/>
+ </g>
+</svg>

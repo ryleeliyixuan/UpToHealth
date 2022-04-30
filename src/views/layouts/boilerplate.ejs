@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UpToHealth</title>
+    <link rel="icon" href="/static/assets/favicon.svg" />
 
     <link
       rel="stylesheet"
@@ -24,7 +25,10 @@
     />
   </head>
 
-  <body class="d-flex flex-column vh-100">
+  <body class="vh-100">
+    <div class="sticky-top nav-bar-container">
+      <%- include('../partials/navbar')%>
+    </div>
     <main><%- body %></main>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"

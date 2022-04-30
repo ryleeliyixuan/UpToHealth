@@ -1,52 +1,47 @@
-<!-- TODO 4: Change Nav Bar -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YelpCamp</title>
-
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
-      crossorigin="anonymous"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
-
-    <!-- <link rel="stylesheet" href="/stylesheets/app.css"> -->
-  </head>
-
-  <nav class="navbar sticky-top navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">YelpSki</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link" href="/">Home</a>
-          <a class="nav-link" href="/dashboard">All Ski Resorts</a>
-          <a class="nav-link" href="/resorts">New Ski Resorts</a>
-        </div>
-        <div class="navbar-nav ml-auto">
-          <% if(!user) {%>
-          <a class="nav-link" href="/sign-in">Login</a>
-          <a class="nav-link" href="/sign-up">Register</a>
-          <% } else {%>
-          <a class="nav-link" href="/log-out">Logout</a>
-          <% } %>
-        </div>
+<nav class="navbar sticky-top navbar-expand-lg bg-transparent">
+  <div class="container-fluid">
+    <a href="/dashboard" class="mr-4"
+      ><img class="logo-img-nav" src="/static/assets/logo.svg"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-chevron-bar-expand"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3.646 10.146a.5.5 0 0 1 .708 0L8 13.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-4.292a.5.5 0 0 0 .708 0L8 2.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708zM1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8z"
+          />
+        </svg>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link orange" href="/dashboard">Dashboard</a>
+        <a class="nav-link orange" href="/resorts">Referral List</a>
+        <a class="nav-link orange" href="/resorts">Patient List</a>
+      </div>
+      <div class="navbar-nav ml-auto">
+        <% if(!user) {%>
+        <a class="nav-link orange" href="/sign-in">Login</a>
+        <a class="nav-link orange" href="/sign-up">Register</a>
+        <% } else {%>
+        <a class="nav-link orange" href="/log-out">Logout</a>
+        <% } %>
       </div>
     </div>
-  </nav>
-  <!-- TODO 4: Change Nav Bar -->
-</html>
+  </div>
+</nav>
