@@ -110,6 +110,8 @@ app.get("/dashboard", authMiddleware, async function (req, res) {
 
 app.get("/patients", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
+  const patients = await PatientService.getPatientByUserId(userId);
+  res.render("pages/dashboard", { user: req.user });
 });
 
 app.post("/patients", authMiddleware, async (req, res) => {

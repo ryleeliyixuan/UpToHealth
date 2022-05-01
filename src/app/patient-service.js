@@ -16,19 +16,18 @@ module.exports = {
     });
   },
 
-  getReviewByResort: async (resortId) => {
-    console.log(resortId);
-    const reviews = await db
-      .collection("reviews")
-      .where("resortId", "==", `${resortId}`)
+  getPatientByUserId: async (userId) => {
+    const patients = await db
+      .collection("patients")
+      .where("userId", "==", `${userId}`)
       .get();
 
-    reviews.forEach((doc) => {
+    patients.forEach((doc) => {
       doc.data = doc.data();
       // console.log(doc.id, "=>", doc.data);
     });
 
-    return reviews;
+    return patients;
   },
 
   deleteReviewById: async (id) => {
