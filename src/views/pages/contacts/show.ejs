@@ -6,7 +6,7 @@
 >
   <div class="section mb-3">
     <form
-      action="/patients/search"
+      action="/contacts/search"
       method="POST"
       class="form-inline center input-group mb-3"
     >
@@ -24,27 +24,6 @@
         </button>
       </div>
     </form>
-    <div class="dropdown show">
-      <a
-        class="dropdown-toggle text center sort-by"
-        href="#"
-        role="button"
-        id="dropdownMenuLink"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        <img class="mr-2" src="/static/assets/icon/sort.svg" /> Sort By
-      </a>
-
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item sort-by" href="/patients/sortby/name">Name</a>
-        <a class="dropdown-item sort-by" href="/patients/sortby/timestamp"
-          >Last Update</a
-        >
-        <a class="dropdown-item sort-by" href="/patients/sortby/age">Age</a>
-      </div>
-    </div>
   </div>
   <div class="line mb-4"></div>
   <div class="section2 w-100">
@@ -53,13 +32,13 @@
       != "") {%>
       <div class="result-info mb-4">
         Results for <i><%=searchName%></i>. See
-        <a href="/patients" class="orange">All</a>.
+        <a href="/contacts" class="orange">All</a>.
       </div>
       <% }%> <%- include('./card', {items: items, userId: userId}) %> <% }else
       {%>
       <div class="result-info mb-4">
         No Matching Results Found. See
-        <a href="/patients" class="orange">All</a>.
+        <a href="/contacts" class="orange">All</a>.
       </div>
       <% } %>
     </div>

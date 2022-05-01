@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/static/stylesheets/contact-card.css" />
+
+<% items.forEach(function(item) { %> <% if(item.data.userId == userId) {%>
+<div class="col-6 col-md-4 col-lg-3 d-flex justify-content-center mb-4">
+  <a href="/contacts/<%=item.id%>" style="text-decoration: none">
+    <div class="card d-flex justify-content-between">
+      <div class="d-flex justify-content-between">
+        <% if(item.data.avatar) {%>
+        <img class="avatar" alt="" src="<%=item.data.avatar%>" />
+        <% }else {%>
+        <img
+          class="avatar"
+          alt=""
+          src="/static/assets/avatar/doctor-male.svg"
+        />
+        <% } %>
+        <img class="mr-3" alt="" src="/static/assets/icon/view.svg" />
+      </div>
+      <div class="card-title text"><%=item.data.name%></div>
+      <div class="center mx-auto flex-column">
+        <div class="mini-card text center flex-column mb-2">
+          <span><%=item.data.institution%></span>
+          <div class="sub-title">Instituion</div>
+        </div>
+        <div class="mini-card text center flex-column">
+          <span><%=item.data.occupation%></span>
+          <div class="sub-title">Occupation</div>
+        </div>
+      </div>
+      <div class="last-update center"><%=item.data.lastUpdate%></div>
+    </div>
+  </a>
+</div>
+
+<% } %> <% }) %>

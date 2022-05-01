@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/static/stylesheets/modal.css" />
+
+<div
+  class="modal fade"
+  id="viewPatient"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="viewPatientLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text mx-auto" id="viewPatientLabel">
+          <img class="mr-2" src="/static/assets/icon/patient.svg" />Patient Detail
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="mb-3">
+            <label for="name" class="col-form-label ">Name</label>
+            <div></div>
+          </div>
+          <div class="mb-3">
+            <label for="gender" class="col-form-label">Gender</label>
+            <input type="text" class="form-control text" id="gender" name="gender"></input>
+          </div>
+          <div class="mb-3">
+            <label for="age" class="col-form-label">Age</label>
+            <input type="number" class="form-control text" id="age" name="age"></input>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="col-form-label">Email</label>
+            <input type="email" class="form-control text" id="email" name="email"></input>
+          </div>
+          <div class="mb-3">
+            <label for="number" class="col-form-label">Phone Number</label>
+            <input type="text" class="form-control text" id="number" name="number"></input>
+          </div>
+          <div class="mb-3">
+            <label for="note" class="col-form-label">Note</label>
+            <textarea class="form-control text" id="note" name="note"></textarea>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

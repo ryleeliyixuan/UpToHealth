@@ -162,6 +162,17 @@ app.get("/patients/sortby/:query", authMiddleware, async (req, res) => {
   });
 });
 
+// CONTACTS
+app.get("/contacts", authMiddleware, async (req, res) => {
+  const userId = req.user.sub;
+  const contacts = await ContactService.getContactByUserId(userId);
+  res.render("pages/contacts/show", {
+    userId: req.user.sub,
+    items: contacts,
+    searchName: "",
+  });
+});
+
 app.post("/contacts", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
   const { name, institution, occupation, email, number, note } = req.body;
@@ -175,6 +186,24 @@ app.post("/contacts", authMiddleware, async (req, res) => {
     note
   ).then(() => {
     res.redirect("/dashboard");
+  });
+});
+
+app.post("/contacts/search", authMiddleware, async (req, res) => {
+  const userId = req.user.sub;
+  const { name } = req.body;
+
+  var patients;
+  if (!name || name.trim() == "") {
+    patients = await ContactService.getContactByUserId(userId);
+  } else {
+    patients = await ContactService.searchContactByName(userId, name);
+  }
+
+  res.render("pages/contacts/show", {
+    userId: req.user.sub,
+    items: patients,
+    searchName: name,
   });
 });
 

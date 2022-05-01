@@ -2,7 +2,6 @@
 const admin = require("firebase-admin");
 const db = admin.firestore();
 const { formatDistanceToNow } = require("date-fns");
-const { user } = require("firebase-functions/v1/auth");
 
 module.exports = {
   addPatient: async (userId, name, gender, age, email, number, note = "") => {
