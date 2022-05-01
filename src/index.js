@@ -16,13 +16,11 @@ const UserService = require("./app/user-service");
 const ResortService = require("./app/resort-service");
 const ReviewService = require("./app/review-service");
 const authMiddleware = require("./app/auth-middleware");
+const PatientService = require("./app/patient-service");
 
-// TODO 4: Add Boilerplate
 const ejsMate = require("ejs-mate");
 app.engine("ejs", ejsMate);
-// TODO 4: Add Boilerplate
 
-// use cookies
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(
@@ -30,13 +28,11 @@ app.use(
     extended: true,
   })
 );
-// set the view engine to ejs
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
 app.use("/static", express.static("static/"));
 
-// TODO 1: Set up log out + get idToken for each request
 app.use((req, res, next) => {
   res.locals.user = req.cookies.__session;
   next();
@@ -67,7 +63,6 @@ app.post("/sessionLogin", (req, res) => {
           .verifySessionCookie(sessionCookie, true)
           .then((userData) => {
             req.user = userData;
-            // console.log("Logged in:", req.user);
             const id = userData.sub;
             const email = userData.email;
 
@@ -98,7 +93,6 @@ app.get("/sign-up", function (req, res) {
   res.render("pages/users/sign-up");
 });
 
-// TODO 1: Set up log out + get idToken for each request
 app.get("/log-out", function (req, res) {
   res.redirect("/sessionLogout");
 });
@@ -109,29 +103,31 @@ app.get("/sessionLogout", (req, res) => {
 });
 
 app.get("/dashboard", authMiddleware, async function (req, res) {
-  const feed = await ResortService.getAllResorts();
-  res.render("pages/dashboard", { user: req.user, feed });
+  // const feed = await ResortService.getAllResorts();
+  res.render("pages/dashboard", { user: req.user });
 });
+
+app.post("/patients", authMiddleware, async (req, res) => {
+  const userId = req.user.sub;
+  console.log(req.body);
+  const { name, gender, age, email, number, note } = req.body;
+  // PatientService.addPatient(
+  //   userId,
+  //   name,
+  //   gender,
+  //   age,
+  //   email,
+  //   number,
+  //   note
+  // ).then(() => {
+  //   res.redirect("/dashboard");
+  // });
+});
+
+// =============
 
 app.get("/resorts", authMiddleware, async function (req, res) {
   res.render("pages/resorts/new");
-});
-
-app.post("/resorts", authMiddleware, async (req, res) => {
-  const userId = req.user.sub;
-  const username = req.user.email;
-  const { title, location, imageUrl, price, description } = req.body;
-  ResortService.createResort(
-    userId,
-    title,
-    location,
-    price,
-    description,
-    imageUrl,
-    username
-  ).then(() => {
-    res.redirect("/dashboard");
-  });
 });
 
 // TODO: SHOW RESORTS

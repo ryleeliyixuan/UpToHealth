@@ -59,23 +59,39 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Name</label>
-            <input type="text" class="form-control" id="recipient-name" />
+        <form action="/patients" method="POST" novalidate class="validated-form">
+          <div class="mb-3">
+            <label for="name" class="col-form-label ">Name</label>
+            <input type="text" class="form-control" id="name" required />
           </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Email</label>
-            <textarea class="form-control" id="message-text"></textarea>
+          <div class="d-flex">
+            <label>Gender</label>
+            <div class="mb-3 d-flex mx-auto">
+              <input type="radio" class="btn-check" name="gender" id="option1" autocomplete="off" checked>
+              <label class="btn btn-select center mr-4" for="option1">Male</label>
+  
+              <input type="radio" class="btn-check" name="gender" id="option2" autocomplete="off">
+              <label class="btn btn-select center" for="option2">Female</label>
+            </div>
           </div>
-          <div class="form-group">
+          <div class="mb-3">
+            <label for="age" class="col-form-label">Age</label>
+            <input type="number" class="form-control" id="age" required></input>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="col-form-label">Email</label>
+            <input type="email" class="form-control" id="email" required></input>
+          </div>
+          <div class="mb-3">
+            <label for="number" class="col-form-label">Phone Number</label>
+            <input type="text" class="form-control" id="number" required></input>
+          </div>
+          <div class="mb-3">
             <label for="message-text" class="col-form-label">Note</label>
             <textarea class="form-control" id="message-text"></textarea>
           </div>
+          <button class="btn btn-modal center text">Add</button>
         </form>
-      </div>
-      <div class="modal-footer center">
-        <button type="button" class="btn btn-modal center text">Add</button>
       </div>
     </div>
   </div>
