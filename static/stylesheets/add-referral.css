@@ -1,0 +1,37 @@
+.section-container {
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(232, 232, 232, 0) 7%,
+    rgba(231, 162, 108, 0.609375) 29.45%,
+    #b31b1b 57.15%
+  );
+}
+
+.modal-content {
+  margin: auto;
+  margin-top: 10vh;
+  width: 50vw;
+  max-width: 500px;
+  border: none;
+}
+
+.close {
+  display: none;
+}
+
+.form-select {
+  border-radius: 25px;
+  background-color: #f2f2f2;
+  border: none;
+  font-size: 17px;
+  color: #000000;
+}
+
+/* Mobile Device */
+@media (max-width: 768px) {
+  .modal-content {
+    margin-top: 3vh;
+    width: 90vw;
+  }
+}

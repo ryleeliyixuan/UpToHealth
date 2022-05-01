@@ -93,6 +93,18 @@ a:hover {
   background-image: url(/static/assets/icon/check.svg);
 }
 
+.form-select.is-valid:focus,
+.was-validated .form-select:valid:focus {
+  border-color: #ffc72c;
+  box-shadow: 0 0 0 0.2rem rgb(255 199 44 / 25%);
+}
+
+.form-select.is-valid,
+.was-validated .form-select:valid {
+  border-color: #ffc72c;
+  background-image: url(/static/assets/icon/check.svg);
+}
+
 /* Auto Fill */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

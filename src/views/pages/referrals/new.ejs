@@ -1,0 +1,69 @@
+<% layout('./layouts/boilerplate')%>
+<link rel="stylesheet" href="/static/stylesheets/modal.css" />
+<link rel="stylesheet" href="/static/stylesheets/add-referral.css" />
+
+<div class="section-container">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title text mx-auto" id="addReferralLabel">
+        <img src="/static/assets/icon/add-patient.svg" />Add New Referral
+      </h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form action="/referrals" method="POST" novalidate class="validated-form">
+        <div class="mb-3">
+          <label for="patientId" class="col-form-label">Refer Patient</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            id="patientId"
+            name="patientId"
+            required
+          >
+            <% patients.forEach(function(item) { %>
+            <option value="<%=item.id%>"><%=item.data.name%></option>
+            <% })%>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="contactId" class="col-form-label">To Doctor</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            id="contactId"
+            name="contactId"
+            required
+          >
+            <% contacts.forEach(function(item) { %>
+            <option value="<%=item.id%>"><%=item.data.name%></option>
+            <% })%>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="note" class="col-form-label">Note</label>
+          <textarea
+            class="form-control text"
+            id="note"
+            name="note"
+            required
+          ></textarea>
+        </div>
+        <div class="mb-3 center text">
+          <img class="mr-2" src="/static/assets/icon/add-file.svg" />
+          <p class="add-file">Add Files</p>
+        </div>
+        <div class="center">
+          <button class="btn btn-modal center text">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

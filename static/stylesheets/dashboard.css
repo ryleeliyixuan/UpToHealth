@@ -46,22 +46,6 @@
   box-shadow: none;
 }
 
-/* form */
-.form-control {
-  border-radius: 25px;
-  background-color: #f2f2f2;
-  border: none;
-  font-size: 17px;
-  color: #000000;
-}
-
-.add-file {
-  color: #000000;
-  opacity: 0.5;
-  margin: 0;
-  text-decoration: underline;
-}
-
 @media (max-width: 850px) {
   .intro {
     width: 80vw;

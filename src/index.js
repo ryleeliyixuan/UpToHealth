@@ -18,6 +18,7 @@ const ReviewService = require("./app/review-service");
 const authMiddleware = require("./app/auth-middleware");
 const PatientService = require("./app/patient-service");
 const ContactService = require("./app/contact-service");
+const ReferralService = require("./app/referral-service");
 
 const ejsMate = require("ejs-mate");
 app.engine("ejs", ejsMate);
@@ -193,20 +194,40 @@ app.post("/contacts/search", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
   const { name } = req.body;
 
-  var patients;
+  var contacts;
   if (!name || name.trim() == "") {
-    patients = await ContactService.getContactByUserId(userId);
+    contacts = await ContactService.getContactByUserId(userId);
   } else {
-    patients = await ContactService.searchContactByName(userId, name);
+    contacts = await ContactService.searchContactByName(userId, name);
   }
 
   res.render("pages/contacts/show", {
     userId: req.user.sub,
-    items: patients,
+    items: contacts,
     searchName: name,
   });
 });
 
+// REFERRAL
+app.get("/referrals", authMiddleware, async function (req, res) {
+  const userId = req.user.sub;
+  contacts = await ContactService.getContactByUserId(userId);
+  patients = await PatientService.getPatientByUserId(userId);
+
+  res.render("pages/referrals/new", {
+    userId: req.user.sub,
+    patients: patients,
+    contacts: contacts,
+  });
+});
+
+app.post("/referrals", authMiddleware, async (req, res) => {
+  const userId = req.user.sub;
+  const { patientId, contactId, note } = req.body;
+  ReferralService.addReferral(userId, patientId, contactId, note).then(() => {
+    res.redirect("/dashboard");
+  });
+});
 // =============
 
 app.get("/resorts", authMiddleware, async function (req, res) {

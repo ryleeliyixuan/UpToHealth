@@ -2,6 +2,7 @@
   margin: auto;
   margin-top: 10vh;
   width: 50vw;
+  max-width: 500px;
 }
 
 .line {
