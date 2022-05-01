@@ -1,6 +1,7 @@
 // Interacting with firebase to save data into our database
 const admin = require("firebase-admin");
 const db = admin.firestore();
+const { formatDistanceToNow } = require("date-fns");
 
 module.exports = {
   addPatient: async (userId, name, gender, age, email, number, note = "") => {
@@ -24,7 +25,11 @@ module.exports = {
 
     patients.forEach((doc) => {
       doc.data = doc.data();
-      // console.log(doc.id, "=>", doc.data);
+      doc.data.gender = doc.data.gender.substring(0, 1).toUpperCase();
+      const timestamp = doc.data.timestamp;
+      doc.data.lastUpdate = formatDistanceToNow(timestamp.toDate(), {
+        addSuffix: true,
+      });
     });
 
     return patients;

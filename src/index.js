@@ -111,7 +111,7 @@ app.get("/dashboard", authMiddleware, async function (req, res) {
 app.get("/patients", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
   const patients = await PatientService.getPatientByUserId(userId);
-  res.render("pages/dashboard", { user: req.user });
+  res.render("pages/patients/show", { user: req.user, items: patients });
 });
 
 app.post("/patients", authMiddleware, async (req, res) => {

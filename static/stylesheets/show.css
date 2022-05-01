@@ -1,0 +1,11 @@
+.section-container {
+  margin: auto;
+  width: 50vw;
+}
+
+/* Mobile Device */
+@media (max-width: 768px) {
+  .section-container {
+    width: 90vw;
+  }
+}
