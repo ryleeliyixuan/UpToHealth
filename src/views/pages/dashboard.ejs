@@ -1,31 +1,82 @@
 <% layout('./layouts/boilerplate')%>
 
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none">
-  <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-    <path
-      d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
-    />
-  </symbol>
-</svg>
+<link rel="stylesheet" href="/static/stylesheets/dashboard.css" />
 
-<h1 class="mb-3">ALL SKI RESORTS</h1>
-<div class="container">
-  <div class="alert alert-primary mb-3 d-flex align-items-center" role="alert">
-    <svg
-      class="bi flex-shrink-0 me-2 mr-3"
-      width="24"
-      height="24"
-      role="img"
-      aria-label="Info:"
+<div
+  class="section-container d-flex flex-column justify-content-center align-items-center"
+>
+  <div class="section-1 center flex-column"></div>
+  <div class="section-2 center flex-column">
+    <a
+      href="/dashboard"
+      class="btn btn-lg btn-primary center text mb-4"
+      role="button"
+      ><img src="/static/assets/icon/people.svg" />Manage Referral Details</a
     >
-      <use xlink:href="#info-fill" />
-    </svg>
-    <div>
-      Didn't find my resort?
-      <a href="/resorts" class="alert-link">Add new resorts here</a>.
+
+    <a href="/dashboard" class="btn btn-lg center text mb-4" role="button"
+      ><img src="/static/assets/icon/list.svg" />Patient List</a
+    >
+    <div class="line mb-4"></div>
+    <div class="btn-group d-flex">
+      <a
+        href="/dashboard"
+        class="btn btn-row btn-lg center text mr-4"
+        role="button"
+        data-toggle="modal"
+        data-target="#exampleModal"
+        data-whatever="@mdo"
+        ><img src="/static/assets/icon/add-patient.svg" />Add Patient</a
+      >
+      <a href="/dashboard" class="btn btn-row btn-lg center text" role="button"
+        ><img src="/static/assets/icon/add-referral.svg" />Add Referral</a
+      >
     </div>
   </div>
-  <div class="feed-stream">
-    <%- include('../partials/feed-stream', { feed: feed }) %>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text mx-auto" id="exampleModalLabel">
+          <img src="/static/assets/icon/add-patient.svg" />Add New Patient
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name</label>
+            <input type="text" class="form-control" id="recipient-name" />
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Email</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Note</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer center">
+        <button type="button" class="btn btn-modal center text">Add</button>
+      </div>
+    </div>
   </div>
 </div>
