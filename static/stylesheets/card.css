@@ -8,6 +8,10 @@
   border: none;
 }
 
+.card:hover {
+  box-shadow: 0px 4px 30px rgba(144, 144, 144, 0.75);
+}
+
 .card-title {
   font-weight: 500;
   font-size: 17px;

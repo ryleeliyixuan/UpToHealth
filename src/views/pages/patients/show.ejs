@@ -4,11 +4,64 @@
 <div
   class="section-container d-flex flex-column justify-content-center align-items-center"
 >
-  <div class="section1 search-bar"></div>
+  <div class="section mb-3">
+    <form
+      action="/patients/search"
+      method="POST"
+      class="form-inline center input-group mb-3"
+    >
+      <input
+        class="form-control ml-2 text input"
+        type="search"
+        placeholder="Search Name"
+        aria-label="Search"
+        id="name"
+        name="name"
+      />
+      <div class="input-group-append mr-2">
+        <button class="btn btn-search" type="submit">
+          <img src="/static/assets/icon/search.svg" />
+        </button>
+      </div>
+    </form>
+    <div class="dropdown show">
+      <a
+        class="dropdown-toggle text center sort-by"
+        href="#"
+        role="button"
+        id="dropdownMenuLink"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <img class="mr-2" src="/static/assets/icon/sort.svg" /> Sort By
+      </a>
 
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item sort-by" href="/patients/sortby/name">Name</a>
+        <a class="dropdown-item sort-by" href="/patients/sortby/timestamp"
+          >Last Update</a
+        >
+        <a class="dropdown-item sort-by" href="/patients/sortby/age">Age</a>
+      </div>
+    </div>
+  </div>
+  <div class="line mb-4"></div>
   <div class="section2 w-100">
     <div class="row justify-content-between">
-      <%- include('../../partials/card', { items: items }) %>
+      <% if(items && items._size != 0) {%> <% if(searchName && searchName.trim()
+      != "") {%>
+      <div class="result-info mb-4">
+        Results for <i><%=searchName%></i>. See
+        <a href="/patients" class="orange">All</a>.
+      </div>
+      <% }%> <%- include('../../partials/card', {items: items, userId: userId})
+      %> <% }else {%>
+      <div class="result-info mb-4">
+        No Matching Results Found. See
+        <a href="/patients" class="orange">All</a>.
+      </div>
+      <% } %>
     </div>
   </div>
 </div>

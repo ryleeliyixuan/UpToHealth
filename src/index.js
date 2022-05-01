@@ -111,7 +111,11 @@ app.get("/dashboard", authMiddleware, async function (req, res) {
 app.get("/patients", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
   const patients = await PatientService.getPatientByUserId(userId);
-  res.render("pages/patients/show", { user: req.user, items: patients });
+  res.render("pages/patients/show", {
+    userId: req.user.sub,
+    items: patients,
+    searchName: "",
+  });
 });
 
 app.post("/patients", authMiddleware, async (req, res) => {
@@ -127,6 +131,34 @@ app.post("/patients", authMiddleware, async (req, res) => {
     note
   ).then(() => {
     res.redirect("/dashboard");
+  });
+});
+
+app.post("/patients/search", authMiddleware, async (req, res) => {
+  const userId = req.user.sub;
+  const { name } = req.body;
+
+  var patients;
+  if (!name || name.trim() == "") {
+    patients = await PatientService.getPatientByUserId(userId);
+  } else {
+    patients = await PatientService.searchPatientByName(userId, name);
+  }
+  res.render("pages/patients/show", {
+    userId: req.user.sub,
+    items: patients,
+    searchName: name,
+  });
+});
+
+app.get("/patients/sortby/:query", authMiddleware, async (req, res) => {
+  const userId = req.user.sub;
+  const { query } = req.params;
+  const patients = await PatientService.sortPatientByQuery(userId, query);
+  res.render("pages/patients/show", {
+    userId: req.user.sub,
+    items: patients,
+    searchName: "",
   });
 });
 
