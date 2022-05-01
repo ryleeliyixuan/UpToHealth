@@ -17,6 +17,7 @@ const ResortService = require("./app/resort-service");
 const ReviewService = require("./app/review-service");
 const authMiddleware = require("./app/auth-middleware");
 const PatientService = require("./app/patient-service");
+const ContactService = require("./app/contact-service");
 
 const ejsMate = require("ejs-mate");
 app.engine("ejs", ejsMate);
@@ -107,6 +108,10 @@ app.get("/dashboard", authMiddleware, async function (req, res) {
   res.render("pages/dashboard", { user: req.user });
 });
 
+app.get("/patients", authMiddleware, async (req, res) => {
+  const userId = req.user.sub;
+});
+
 app.post("/patients", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
   const { name, gender, age, email, number, note } = req.body;
@@ -115,6 +120,22 @@ app.post("/patients", authMiddleware, async (req, res) => {
     name,
     gender,
     age,
+    email,
+    number,
+    note
+  ).then(() => {
+    res.redirect("/dashboard");
+  });
+});
+
+app.post("/contacts", authMiddleware, async (req, res) => {
+  const userId = req.user.sub;
+  const { name, institution, occupation, email, number, note } = req.body;
+  ContactService.addContact(
+    userId,
+    name,
+    institution,
+    occupation,
     email,
     number,
     note

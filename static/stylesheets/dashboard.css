@@ -8,12 +8,12 @@
 }
 
 .section-1 {
-  height: 40vh;
+  height: 37vh;
   width: 100%;
 }
 
 .section-2 {
-  height: 60vh;
+  height: 63vh;
   width: 100%;
   border-radius: 20%/50px 50px 0 0;
   background-color: white;
@@ -31,10 +31,6 @@
 .btn-row {
   height: 150px;
   border-radius: 25px !important;
-}
-
-.btn-primary {
-  height: 100px;
 }
 
 .line {
@@ -115,8 +111,10 @@ label {
   }
 
   .btn-row {
-    height: 150px;
+    height: 100px;
     border-radius: 25px !important;
+    display: flex;
+    flex-direction: column;
   }
 
   .btn-primary {
