@@ -3,13 +3,15 @@ const admin = require("firebase-admin");
 const db = admin.firestore();
 
 module.exports = {
-  addPatient: async (userId, name, gender, age, email, number, note) => {
-    const review = await db.collection("reviews").add({
-      resortId: resortId,
+  addPatient: async (userId, name, gender, age, email, number, note = "") => {
+    await db.collection("patients").add({
       userId: userId,
-      username: username,
-      rating: rating,
-      body: body,
+      name: name,
+      gender: gender,
+      age: age,
+      email: email,
+      number: number,
+      note: note,
       timestamp: admin.firestore.FieldValue.serverTimestamp(),
     });
   },

@@ -109,19 +109,18 @@ app.get("/dashboard", authMiddleware, async function (req, res) {
 
 app.post("/patients", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
-  console.log(req.body);
   const { name, gender, age, email, number, note } = req.body;
-  // PatientService.addPatient(
-  //   userId,
-  //   name,
-  //   gender,
-  //   age,
-  //   email,
-  //   number,
-  //   note
-  // ).then(() => {
-  //   res.redirect("/dashboard");
-  // });
+  PatientService.addPatient(
+    userId,
+    name,
+    gender,
+    age,
+    email,
+    number,
+    note
+  ).then(() => {
+    res.redirect("/dashboard");
+  });
 });
 
 // =============

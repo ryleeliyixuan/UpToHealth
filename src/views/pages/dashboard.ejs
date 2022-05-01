@@ -62,35 +62,30 @@
         <form action="/patients" method="POST" novalidate class="validated-form">
           <div class="mb-3">
             <label for="name" class="col-form-label ">Name</label>
-            <input type="text" class="form-control" id="name" required />
+            <input type="text" class="form-control text" id="name" name="name" required />
           </div>
-          <div class="d-flex">
-            <label>Gender</label>
-            <div class="mb-3 d-flex mx-auto">
-              <input type="radio" class="btn-check" name="gender" id="option1" autocomplete="off" checked>
-              <label class="btn btn-select center mr-4" for="option1">Male</label>
-  
-              <input type="radio" class="btn-check" name="gender" id="option2" autocomplete="off">
-              <label class="btn btn-select center" for="option2">Female</label>
-            </div>
+          <div class="mb-3">
+            <label for="gender" class="col-form-label">Gender</label>
+            <input type="text" class="form-control text" id="gender" name="gender" required></input>
           </div>
           <div class="mb-3">
             <label for="age" class="col-form-label">Age</label>
-            <input type="number" class="form-control" id="age" required></input>
+            <input type="number" class="form-control text" id="age" name="age" required></input>
           </div>
           <div class="mb-3">
             <label for="email" class="col-form-label">Email</label>
-            <input type="email" class="form-control" id="email" required></input>
+            <input type="email" class="form-control text" id="email" name="email" required></input>
           </div>
           <div class="mb-3">
             <label for="number" class="col-form-label">Phone Number</label>
-            <input type="text" class="form-control" id="number" required></input>
+            <input type="text" class="form-control text" id="number" name="number" required></input>
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Note</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="note" class="col-form-label">Note</label>
+            <textarea class="form-control text" id="note" name="note" required></textarea>
           </div>
-          <button class="btn btn-modal center text">Add</button>
+          <div class="mb-3 center text"><img class="mr-2" src="/static/assets/icon/add-file.svg"><p class="add-file">Add Files</p></div>
+          <div class="center"><button class="btn btn-modal center text">Add</button></div>
         </form>
       </div>
     </div>

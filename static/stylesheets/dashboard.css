@@ -84,23 +84,20 @@ label {
   box-shadow: none;
 }
 
-.btn-select {
-  width: fit-content;
-  height: auto;
-  padding: 2px 10px;
-  background-color: white !important;
-  background: none;
+/* form */
+.form-control {
+  border-radius: 25px;
+  background-color: #f2f2f2;
+  border: none;
+  font-size: 17px;
+  color: #000000;
+}
 
-  border: 1.5px solid #b1b1b1;
-  box-sizing: border-box;
-  border-radius: 4px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 16px;
-  letter-spacing: -0.078px;
-  color: #b1b1b1;
+.add-file {
+  color: #000000;
+  opacity: 0.5;
+  margin: 0;
+  text-decoration: underline;
 }
 
 @media (max-width: 850px) {
@@ -115,11 +112,6 @@ label {
 
   .btn-group {
     width: 80vw;
-  }
-
-  .btn-select {
-    width: fit-content;
-    height: auto;
   }
 
   .btn-row {
