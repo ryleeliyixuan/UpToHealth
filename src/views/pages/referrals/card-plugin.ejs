@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/static/stylesheets/card-referral.css" />
+
+<% items.forEach(function(item) { %>
+<div class="col-12 d-flex justify-content-center mb-4">
+  <a href="/referrals/<%=item.id%>" style="text-decoration: none">
+    <div class="card d-flex justify-content-between">
+      <div class="card-title text mt-2">
+        <span class="small-font">Referred</span>
+        <span><%=item.data.patientName%></span>
+        <span class="small-font"> to </span>
+        <span><%=item.data.contactName%></span>
+      </div>
+
+      <div class="center mx-auto flex-column">
+        <div class="mini-card text center flex-column mb-2">
+          <span><%=item.data.contactInstitution%></span>
+          <div class="sub-title">Instituion</div>
+        </div>
+        <div class="mini-card text center flex-column">
+          <span><%=item.data.contactOccupation%></span>
+          <div class="sub-title">Occupation</div>
+        </div>
+      </div>
+      <div class="last-update center"><%=item.data.lastUpdate%></div>
+    </div>
+  </a>
+</div>
+<% }) %>

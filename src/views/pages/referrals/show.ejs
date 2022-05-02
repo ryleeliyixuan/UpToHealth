@@ -1,0 +1,18 @@
+<% layout('./layouts/boilerplate')%>
+<link rel="stylesheet" href="/static/stylesheets/show.css" />
+
+<div
+  class="section-container d-flex flex-column justify-content-center align-items-center"
+  style="max-width: 650px"
+>
+  <div class="section mb-3 text red">Referral List</div>
+  <div class="line mb-4"></div>
+  <div class="section2 w-100">
+    <div class="row justify-content-between">
+      <% if(items && items._size != 0) {%> <%- include('./card', {items: items,
+      userId: userId}) %> <% }else {%>
+      <div class="result-info mb-4">No Results Found.</div>
+      <% } %>
+    </div>
+  </div>
+</div>

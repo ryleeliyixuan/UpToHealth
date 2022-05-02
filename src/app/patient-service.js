@@ -34,6 +34,22 @@ module.exports = {
     return patients;
   },
 
+  getPatientById: async (id) => {
+    const doc = await db.collection("patients").doc(id).get();
+
+    if (!doc.exists) {
+      return null;
+    } else {
+      doc.data = doc.data();
+      doc.data.gender = doc.data.gender.substring(0, 1).toUpperCase();
+      const timestamp = doc.data.timestamp;
+      doc.data.lastUpdate = formatDistanceToNow(timestamp.toDate(), {
+        addSuffix: true,
+      });
+      return doc;
+    }
+  },
+
   searchPatientByName: async (userId, name) => {
     const patients = await db
       .collection("patients")

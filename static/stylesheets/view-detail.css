@@ -15,7 +15,8 @@
   margin-top: 10vh;
   margin-bottom: 10vh;
   width: 50vw;
-  max-width: 500px;
+  height: fit-content;
+  max-width: 650px;
   border: none;
 }
 
@@ -23,12 +24,18 @@
   display: none;
 }
 
-.form-select {
-  border-radius: 25px;
-  background-color: #f2f2f2;
-  border: none;
-  font-size: 17px;
-  color: #000000;
+label {
+  text-align: center;
+  width: 100%;
+}
+
+.content {
+  color: black;
+  text-align: center;
+}
+
+.red {
+  color: #b31b1b;
 }
 
 /* Mobile Device */

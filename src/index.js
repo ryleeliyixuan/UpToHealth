@@ -13,8 +13,6 @@ admin.initializeApp({
 });
 
 const UserService = require("./app/user-service");
-const ResortService = require("./app/resort-service");
-const ReviewService = require("./app/review-service");
 const authMiddleware = require("./app/auth-middleware");
 const PatientService = require("./app/patient-service");
 const ContactService = require("./app/contact-service");
@@ -105,10 +103,10 @@ app.get("/sessionLogout", (req, res) => {
 });
 
 app.get("/dashboard", authMiddleware, async function (req, res) {
-  // const feed = await ResortService.getAllResorts();
   res.render("pages/dashboard", { user: req.user });
 });
 
+// PATIENT
 app.get("/patients", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
   const patients = await PatientService.getPatientByUserId(userId);
@@ -116,6 +114,19 @@ app.get("/patients", authMiddleware, async (req, res) => {
     userId: req.user.sub,
     items: patients,
     searchName: "",
+  });
+});
+
+app.get("/patients/:id", authMiddleware, async (req, res) => {
+  const userId = req.user.sub;
+  const id = req.params.id;
+  const patient = await PatientService.getPatientById(id);
+  const referrals = await ReferralService.getReferralByPatientId(id);
+
+  res.render("pages/patients/detail", {
+    userId: req.user.sub,
+    item: patient,
+    referrals: referrals,
   });
 });
 
@@ -174,6 +185,19 @@ app.get("/contacts", authMiddleware, async (req, res) => {
   });
 });
 
+app.get("/contacts/:id", authMiddleware, async (req, res) => {
+  const userId = req.user.sub;
+  const id = req.params.id;
+  const contact = await ContactService.getContactById(id);
+  const referrals = await ReferralService.getReferralByContactId(id);
+
+  res.render("pages/contacts/detail", {
+    userId: req.user.sub,
+    item: contact,
+    referrals: referrals,
+  });
+});
+
 app.post("/contacts", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
   const { name, institution, occupation, email, number, note } = req.body;
@@ -211,8 +235,29 @@ app.post("/contacts/search", authMiddleware, async (req, res) => {
 // REFERRAL
 app.get("/referrals", authMiddleware, async function (req, res) {
   const userId = req.user.sub;
-  contacts = await ContactService.getContactByUserId(userId);
-  patients = await PatientService.getPatientByUserId(userId);
+  const referrals = await ReferralService.getReferralByUserId(userId);
+
+  res.render("pages/referrals/show", {
+    userId: req.user.sub,
+    items: referrals,
+  });
+});
+
+app.get("/referrals/:id", authMiddleware, async (req, res) => {
+  const userId = req.user.sub;
+  const id = req.params.id;
+  const referral = await ReferralService.getReferralById(id);
+
+  res.render("pages/referrals/detail", {
+    userId: req.user.sub,
+    item: referral,
+  });
+});
+
+app.get("/referral", authMiddleware, async function (req, res) {
+  const userId = req.user.sub;
+  const contacts = await ContactService.getContactByUserId(userId);
+  const patients = await PatientService.getPatientByUserId(userId);
 
   res.render("pages/referrals/new", {
     userId: req.user.sub,
@@ -224,67 +269,27 @@ app.get("/referrals", authMiddleware, async function (req, res) {
 app.post("/referrals", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
   const { patientId, contactId, note } = req.body;
-  ReferralService.addReferral(userId, patientId, contactId, note).then(() => {
+  const p = await PatientService.getPatientById(patientId);
+  const c = await ContactService.getContactById(contactId);
+  const patientName = p.data.name;
+  const contactName = c.data.name;
+  const contactInstitution = c.data.institution;
+  const contactOccupation = c.data.occupation;
+
+  ReferralService.addReferral(
+    userId,
+    patientId,
+    contactId,
+    note,
+    patientName,
+    contactName,
+    contactInstitution,
+    contactOccupation
+  ).then(() => {
     res.redirect("/dashboard");
   });
 });
-// =============
 
-app.get("/resorts", authMiddleware, async function (req, res) {
-  res.render("pages/resorts/new");
-});
-
-// TODO: SHOW RESORTS
-app.get("/resorts/:id", authMiddleware, async (req, res) => {
-  const id = req.params.id;
-  const userId = req.user.sub;
-  const resort = await ResortService.getResortById(id);
-  const reviews = await ReviewService.getReviewByResort(id);
-
-  res.render("pages/resorts/show", {
-    resort: resort,
-    userId: userId,
-    reviews: reviews,
-  });
-});
-
-// TODO: DELETE RESORTS
-app.post("/resorts/:id", authMiddleware, async (req, res) => {
-  const { id } = req.params;
-  const resort = await ResortService.deleteResortById(id);
-  const review = await ReviewService.deleteReviewByResort(id);
-  res.redirect("/dashboard");
-});
-
-// TODO: SUBMIT REVIEWS
-app.post("/resorts/:id/reviews", authMiddleware, async (req, res) => {
-  const resortId = req.params.id;
-  const { rating, body } = req.body;
-  const userId = req.user.sub;
-  const username = req.user.email;
-  const review = await ReviewService.createReview(
-    resortId,
-    userId,
-    username,
-    rating,
-    body
-  );
-  const location = "/resorts/" + resortId;
-  res.redirect(location);
-});
-
-// TODO: DELETE REVIEWS
-app.post(
-  "/resorts/:resortId/reviews/:reviewId",
-  authMiddleware,
-  async (req, res) => {
-    const { resortId, reviewId } = req.params;
-    const review = await ReviewService.deleteReviewById(reviewId);
-    const location = "/resorts/" + resortId;
-    res.redirect(location);
-  }
-);
-
-// exports.app = functions.https.onRequest(app);
-app.listen(port);
-console.log("Server started at http://localhost:" + port);
+exports.app = functions.https.onRequest(app);
+// app.listen(port);
+// console.log("Server started at http://localhost:" + port);

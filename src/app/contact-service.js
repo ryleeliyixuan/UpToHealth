@@ -40,6 +40,21 @@ module.exports = {
     return contacts;
   },
 
+  getContactById: async (id) => {
+    const doc = await db.collection("contacts").doc(id).get();
+
+    if (!doc.exists) {
+      return null;
+    } else {
+      doc.data = doc.data();
+      const timestamp = doc.data.timestamp;
+      doc.data.lastUpdate = formatDistanceToNow(timestamp.toDate(), {
+        addSuffix: true,
+      });
+      return doc;
+    }
+  },
+
   searchContactByName: async (userId, name) => {
     const contacts = await db
       .collection("contacts")

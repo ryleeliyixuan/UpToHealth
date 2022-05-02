@@ -3,47 +3,89 @@ const db = admin.firestore();
 const { formatDistanceToNow } = require("date-fns");
 
 module.exports = {
-  addReferral: async (userId, patientId, contactId, note = "") => {
+  addReferral: async (
+    userId,
+    patientId,
+    contactId,
+    note = "",
+    patientName,
+    contactName,
+    contactInstitution,
+    contactOccupation
+  ) => {
     await db.collection("referrals").add({
       userId: userId,
       patientId: patientId,
+      patientName: patientName,
       contactId: contactId,
+      contactName: contactName,
+      contactInstitution: contactInstitution,
+      contactOccupation: contactOccupation,
       note: note,
       timestamp: admin.firestore.FieldValue.serverTimestamp(),
     });
   },
 
-  getContactByUserId: async (userId) => {
-    const contacts = await db
-      .collection("contacts")
+  getReferralByUserId: async (userId) => {
+    const referrals = await db
+      .collection("referrals")
       .where("userId", "==", `${userId}`)
       .get();
 
-    contacts.forEach((doc) => {
+    referrals.forEach((doc) => {
       doc.data = doc.data();
       const timestamp = doc.data.timestamp;
       doc.data.lastUpdate = formatDistanceToNow(timestamp.toDate(), {
         addSuffix: true,
       });
     });
-    return contacts;
+    return referrals;
   },
 
-  searchContactByName: async (userId, name) => {
-    const contacts = await db
-      .collection("contacts")
-      .where("userId", "==", `${userId}`)
-      .where("name", "==", `${name}`)
+  getReferralByPatientId: async (patientId) => {
+    const referrals = await db
+      .collection("referrals")
+      .where("patientId", "==", `${patientId}`)
       .get();
 
-    contacts.forEach((doc) => {
+    referrals.forEach((doc) => {
       doc.data = doc.data();
       const timestamp = doc.data.timestamp;
       doc.data.lastUpdate = formatDistanceToNow(timestamp.toDate(), {
         addSuffix: true,
       });
     });
+    return referrals;
+  },
 
-    return contacts;
+  getReferralByContactId: async (contactId) => {
+    const referrals = await db
+      .collection("referrals")
+      .where("contactId", "==", `${contactId}`)
+      .get();
+
+    referrals.forEach((doc) => {
+      doc.data = doc.data();
+      const timestamp = doc.data.timestamp;
+      doc.data.lastUpdate = formatDistanceToNow(timestamp.toDate(), {
+        addSuffix: true,
+      });
+    });
+    return referrals;
+  },
+
+  getReferralById: async (id) => {
+    const doc = await db.collection("referrals").doc(id).get();
+
+    if (!doc.exists) {
+      return null;
+    } else {
+      doc.data = doc.data();
+      const timestamp = doc.data.timestamp;
+      doc.data.lastUpdate = formatDistanceToNow(timestamp.toDate(), {
+        addSuffix: true,
+      });
+      return doc;
+    }
   },
 };

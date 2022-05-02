@@ -1,0 +1,49 @@
+<% layout('./layouts/boilerplate')%>
+<link rel="stylesheet" href="/static/stylesheets/modal.css" />
+<link rel="stylesheet" href="/static/stylesheets/view-detail.css" />
+
+<div class="section-container">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title text mx-auto" id="viewPatientLabel">
+        <img class="mr-2" src="/static/assets/icon/patient.svg" />Patient Detail
+      </h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-3">
+        <label for="name" class="col-form-label">Referred Patient</label>
+        <div class="text content">
+          <a class="red" href="/patients/<%=item.data.patientId%>"
+            ><%=item.data.patientName%></a
+          >
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="gender" class="col-form-label">To Doctor</label>
+        <div class="text content">
+          <a class="red" href="/contacts/<%=item.data.contactId%>">
+            <%=item.data.contactName%>
+          </a>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="gender" class="col-form-label">At</label>
+        <div class="text content text-capitalize">
+          <%=item.data.lastUpdate%>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="gender" class="col-form-label">Note</label>
+        <div class="text content"><%=item.data.note%></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -82,6 +82,11 @@
   opacity: 0.9;
 }
 
+.red {
+  color: #b31b1b;
+  font-weight: bolder;
+}
+
 /* Mobile Device */
 @media (max-width: 768px) {
   .section-container {
