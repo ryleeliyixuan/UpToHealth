@@ -22,7 +22,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/patients" method="POST" novalidate class="validated-form">
+        <form id="patient-form" action="/patients" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="name" class="col-form-label ">Name</label>
             <input type="text" class="form-control text" id="name" name="name" required />
@@ -47,10 +47,88 @@
             <label for="note" class="col-form-label">Note</label>
             <textarea class="form-control text" id="note" name="note" required></textarea>
           </div>
-          <div class="mb-3 center text"><img class="mr-2" src="/static/assets/icon/add-file.svg"><p class="add-file">Add Files</p></div>
+          <div class="mb-3">
+            <div class="mb-2 center text"><img class="mr-2" src="/static/assets/icon/add-file.svg"><p class="add-file">Add Files</p></div>
+            <input type="file" class="form-control text" id="files" name="files" multiple></input>
+          </div>
           <div class="center"><button class="btn btn-modal center text">Add</button></div>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+
+<script src="https://www.gstatic.com/firebasejs/9.6.4/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.4/firebase-storage-compat.js"></script>
+
+<script>
+  async function handleFiles(_files) {
+    const files = []
+
+    for (let file of _files) {
+      const name = file.name
+      const fileRef = name + ":ts@" + Date.now();
+
+      const storage = firebase.storage().ref(fileRef);  //create a storage reference
+      await storage.put(file)
+
+      const url = await storage.getDownloadURL()
+      files.push({ref: fileRef, name: name, url: url});
+    }
+
+    return files;
+  }
+
+  window.onload = () => {
+    const firebaseConfig = {
+      apiKey: "AIzaSyAhQnaze6fBd98sFu0LEoLSQsozpj226Eg",
+      authDomain: "uptohealth-cornell-tech.firebaseapp.com",
+      projectId: "uptohealth-cornell-tech",
+      storageBucket: "uptohealth-cornell-tech.appspot.com",
+      messagingSenderId: "906351631407",
+      appId: "1:906351631407:web:2734f358f56598a7dfbada",
+      measurementId: "G-RZFGEXRKSW",
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+
+    var _files = []
+    document.getElementById("files").addEventListener("change", function(e) {
+      _files = e.target.files;
+    });
+
+    document
+      .getElementById("patient-form")
+      .addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const name = event.target.name.value;
+        const gender = event.target.gender.value;
+        const age = event.target.age.value;
+        const email = event.target.email.value;
+        const number = event.target.number.value;
+        const note = event.target.note.value;
+        
+        return handleFiles(_files).then((files)=> {
+          return JSON.stringify({
+                    name: name,
+                    gender: gender,
+                    age: age,
+                    email: email,
+                    number: number,
+                    note: note,
+                    files: files, 
+                  });
+        }).then((body) => {
+          return fetch("/patients", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: body,
+                });
+
+        });
+    });
+  };
+</script>

@@ -41,6 +41,20 @@
         </div>
       </div>
       <div class="mb-3">
+        <label for="files" class="col-form-label">Related Files</label>
+        <% if(item.data.files && item.data.files.length > 0) {%> <% for (file of
+        item.data.files) {%>
+        <a
+          href="<%=file.url%>"
+          target="_blank"
+          class="file-card red center text mb-2"
+          ><%=file.name%></a
+        >
+        <% } %> <% }else {%>
+        <div class="content text">No Files Found.</div>
+        <% } %>
+      </div>
+      <div class="mb-3">
         <label for="gender" class="col-form-label">Note</label>
         <div class="text content"><%=item.data.note%></div>
       </div>

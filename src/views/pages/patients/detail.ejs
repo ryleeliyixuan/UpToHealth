@@ -41,11 +41,22 @@
       <div class="mb-3">
         <label for="note" class="col-form-label">Note</label>
         <div class="text content"><%=item.data.note%></div>
+      </div>
+      <div class="mb-3">
+        <label for="files" class="col-form-label">Patient Files</label>
+        <% if(item.data.files && item.data.files.length > 0) {%> 
+          <% for (file of item.data.files) {%>
+            <a href="<%=file.url%>" target="_blank" class="file-card red center text mb-2"><%=file.name%></a>
+          <% } %>
+        <% }else {%>
+          <div class="content text">No Files Found.</div>
+        <% } %>
+      </div>
       </div class="mb-3">
         <label for="note" class="col-form-label">Recent Referral </label>
         <% if(referrals && referrals._size != 0) {%> <%- include('../referrals/card-plugin', {items: referrals,
           userId: userId}) %> <% }else {%>
-          <div class="content text">No Results Found.</div>
+          <div class="content text mb-3">No Results Found.</div>
           <% } %>
       </div>
     </div>

@@ -132,7 +132,8 @@ app.get("/patients/:id", authMiddleware, async (req, res) => {
 
 app.post("/patients", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
-  const { name, gender, age, email, number, note } = req.body;
+  console.log("Files: ", req.body);
+  const { name, gender, age, email, number, note, files } = req.body;
   PatientService.addPatient(
     userId,
     name,
@@ -140,9 +141,10 @@ app.post("/patients", authMiddleware, async (req, res) => {
     age,
     email,
     number,
-    note
+    note,
+    files
   ).then(() => {
-    res.redirect("/dashboard");
+    res.redirect("/patients");
   });
 });
 
@@ -268,7 +270,7 @@ app.get("/referral", authMiddleware, async function (req, res) {
 
 app.post("/referrals", authMiddleware, async (req, res) => {
   const userId = req.user.sub;
-  const { patientId, contactId, note } = req.body;
+  const { patientId, contactId, note, files } = req.body;
   const p = await PatientService.getPatientById(patientId);
   const c = await ContactService.getContactById(contactId);
   const patientName = p.data.name;
@@ -284,9 +286,10 @@ app.post("/referrals", authMiddleware, async (req, res) => {
     patientName,
     contactName,
     contactInstitution,
-    contactOccupation
+    contactOccupation,
+    files
   ).then(() => {
-    res.redirect("/dashboard");
+    res.redirect("/referrals");
   });
 });
 

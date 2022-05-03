@@ -2,9 +2,19 @@
 const admin = require("firebase-admin");
 const db = admin.firestore();
 const { formatDistanceToNow } = require("date-fns");
+// const { getFileUrls } = require("./get-url");
 
 module.exports = {
-  addPatient: async (userId, name, gender, age, email, number, note = "") => {
+  addPatient: async (
+    userId,
+    name,
+    gender,
+    age,
+    email,
+    number,
+    note = "",
+    files = []
+  ) => {
     await db.collection("patients").add({
       userId: userId,
       name: name,
@@ -13,6 +23,7 @@ module.exports = {
       email: email,
       number: number,
       note: note,
+      files: files,
       timestamp: admin.firestore.FieldValue.serverTimestamp(),
     });
   },

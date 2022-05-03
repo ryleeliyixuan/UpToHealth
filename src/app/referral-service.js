@@ -11,7 +11,8 @@ module.exports = {
     patientName,
     contactName,
     contactInstitution,
-    contactOccupation
+    contactOccupation,
+    files
   ) => {
     await db.collection("referrals").add({
       userId: userId,
@@ -22,6 +23,7 @@ module.exports = {
       contactInstitution: contactInstitution,
       contactOccupation: contactOccupation,
       note: note,
+      files: files,
       timestamp: admin.firestore.FieldValue.serverTimestamp(),
     });
   },
