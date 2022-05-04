@@ -117,20 +117,18 @@
         const note = event.target.note.value;
         
         return handleFiles(_files).then((files)=> {
-          return JSON.stringify({
-                    patientId: patientId,
-                    contactId: contactId,
-                    note: note,
-                    files: files, 
-                  });
-        }).then((body) => {
           return fetch("/referrals", {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json",
                   },
-                  body: body,
-                });
+                  body: JSON.stringify({
+                    patientId: patientId,
+                    contactId: contactId,
+                    note: note,
+                    files: files, 
+                  }),
+                }).then(() => { window.location.assign('/referrals')})
 
         });
     });

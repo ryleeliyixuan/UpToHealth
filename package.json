@@ -25,8 +25,10 @@
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.20.1",
     "kill-port": "^1.6.1",
+    "mailgun-js": "^0.22.0",
     "multer": "^1.4.4",
     "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^6.7.4",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {

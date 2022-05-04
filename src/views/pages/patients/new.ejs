@@ -110,7 +110,12 @@
         const note = event.target.note.value;
         
         return handleFiles(_files).then((files)=> {
-          return JSON.stringify({
+          return fetch("/patients", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
                     name: name,
                     gender: gender,
                     age: age,
@@ -118,15 +123,8 @@
                     number: number,
                     note: note,
                     files: files, 
-                  });
-        }).then((body) => {
-          return fetch("/patients", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: body,
-                });
+                  }),
+                }).then(() => { window.location.assign('/patients')})
 
         });
     });

@@ -1,6 +1,7 @@
 const admin = require("firebase-admin");
 const db = admin.firestore();
 const { formatDistanceToNow } = require("date-fns");
+const { sendEmail } = require("./email-service");
 
 module.exports = {
   addReferral: async (
@@ -14,7 +15,7 @@ module.exports = {
     contactOccupation,
     files
   ) => {
-    await db.collection("referrals").add({
+    const doc = await db.collection("referrals").add({
       userId: userId,
       patientId: patientId,
       patientName: patientName,
@@ -26,6 +27,16 @@ module.exports = {
       files: files,
       timestamp: admin.firestore.FieldValue.serverTimestamp(),
     });
+
+    const referralUrl =
+      "https://uptohealth-cornell-tech.firebaseapp.com/referrals/" + doc.id;
+    return sendEmail(
+      userId,
+      patientName,
+      contactName,
+      contactInstitution,
+      referralUrl
+    );
   },
 
   getReferralByUserId: async (userId) => {

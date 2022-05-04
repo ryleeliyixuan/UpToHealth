@@ -22,6 +22,16 @@ module.exports = {
     }
   },
 
+  getUseremailById: async (id) => {
+    const doc = await db.collection("users").doc(id).get();
+    if (!doc.exists) {
+      console.log("No such document!");
+      return null;
+    } else {
+      return doc.data().email;
+    }
+  },
+
   getUsernameById: async (id) => {
     const doc = await db.collection("users").doc(id).get();
     if (!doc.exists) {
