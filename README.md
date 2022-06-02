@@ -1,6 +1,6 @@
 # UpToHealth https://uptohealth-cornell-tech.firebaseapp.com/
 
-UpToHealth is an NLP-based web tool that helps close the patient referral loop by enabling seamless exchange of consolidated referral information between referring physicians and referred specialists. Additionally, it generates email notifications for patients to reduce delays in completing the referral process. The website can be accessed [here](https://uptohealth-cornell-tech.firebaseapp.com/).
+UpToHealth is a WebApp that helps close the patient referral loop by enabling seamless exchange of consolidated referral information between referring physicians and referred specialists. Additionally, it generates email notifications for patients to reduce delays in completing the referral process. The website can be accessed [here](https://uptohealth-cornell-tech.firebaseapp.com/).
 
 [Introduction](#what-is-uptohealth)\
 [Prototype](#prototype)\
