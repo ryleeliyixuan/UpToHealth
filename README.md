@@ -32,9 +32,9 @@ https://user-images.githubusercontent.com/70308205/171712725-814c70f0-8051-4f84-
 
 [Linkedin](https://www.linkedin.com/in/ryleeli/)
 
-- Built a WebApp that supports seamless exchange of consolidated referral information between referring physicians and referred specialists, using a Firebase/Firestore/Express.js/Node.js stack
+- Built a WebApp that supports a seamless exchange of consolidated referral information between referring physicians and referred specialists, using a Firebase/Firestore/Express.js/Node.js stack
 - Created prototypes and wireframes with a responsive web design using Figma
 - Built signup and login pages using Firebase Authentication; handled and validated sessions to establish stable connections
-- Developed pages that interacts with Firebase Database to create, read, update and delete user data/patient profiles/doctor contacts/referral records, using a Express.js + Node.js stack
-- Supported upload and download of files in various format with Firestore
+- Developed pages that interacts with Firebase Database to create, read, update and delete user data/patient profiles/doctor contacts/referral records, using an Express.js + Node.js stack
+- Supported upload and download of files in various formats with Firestore
 - Generated email notifications that include referral information/files to referred specialists using Trigger and Mailgun
